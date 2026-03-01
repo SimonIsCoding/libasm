@@ -1,6 +1,7 @@
 global _ft_strlen
 global _main
 extern _printf
+default rel
 
 section .text
 
@@ -18,7 +19,7 @@ strlen_end:
 	ret
 
 _main:
-	mov rdi, message
+	lea rdi, [rel message]
 	call _ft_strlen
 
 	; print the value
