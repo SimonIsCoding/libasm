@@ -9,8 +9,7 @@ _ft_strlen:
 	xor rax, rax
 
 strlen_loop:
-	mov al, [rdi + rax]
-	cmp al, 0
+	cmp byte [rdi + rax], 0
 	je strlen_end
 
 	inc rax
