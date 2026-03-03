@@ -18,12 +18,11 @@ strlen_end:
 	ret
 
 _main:
-	lea rdi, [rel message]
+	lea rdi, [message]
 	call _ft_strlen
 
-	; print the value
 	mov rsi, rax
-	lea rdi, [rel format]
+	lea rdi, [format]
 	xor rax, rax
 	call _printf
 
@@ -32,6 +31,6 @@ _main:
 
 section .data
 
-message: db "TEST123", 0
+message: db "This is an incredible test", 0
 format:
-	db "%d", 0
+	db "Result: %d", 10, 0
