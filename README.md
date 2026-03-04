@@ -74,7 +74,7 @@ sudo dnf install nasm gcc
 ### Build
 
 ```bash
-git clone https://github.com/simonwillems/libasm.git
+git clone https://github.com/simoniscoding/libasm.git
 cd libasm
 make
 ```
@@ -83,6 +83,10 @@ This produces `libasm.a`, the static library archive.
 
 ### Run the tests
 
+on macOS:
+nasm -f macho64 ft_strlen.s -o ft_strlen.o
+gcc -arch x86_64 -o ft_strlen ft_strlen.o
+./ft_strlen
 ```bash
 # Compile the test binary against the library
 gcc main.c -L. -lasm -o test_libasm
