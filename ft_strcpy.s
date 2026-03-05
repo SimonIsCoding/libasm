@@ -1,13 +1,3 @@
-ft_strlen(const char *dest, const char *src)
-
-const char dest[512];
-const char src[512]	= "this is a test";
-ft_strcpy(dest, src)
-printf("dest = %s\n", dest);
-printf("src = %s\n", src);
-
-En gros le but est de copier s2, dans s1 et de retourner s1 bien redefinie a la fin
-
 global _main
 global _ft_strcpy
 extern _printf
@@ -16,9 +6,8 @@ default rel
 section .text
 
 _ft_strcpy:
-;	lea rdi [dest] // pas besoin de les ecrire car lors de l'appel de la fonction, ca sera directement charge par main
-;	lea rsi [src]
 	xor rax, rax
+	xor rdx, rdx
 
 strcpy_loop:
 	cmp byte [rsi + rax], 0
@@ -27,6 +16,7 @@ strcpy_loop:
 	mov cl, [rsi + rdx]
 	mov [rdi + rax], cl
 	inc rax
+	inc rdx
 	jmp strcpy_loop
 
 strcpy_end:
@@ -35,9 +25,16 @@ strcpy_end:
 	ret
 
 _main:
-	
+	lea rdi, [dest]
+	lea rsi, [src]
+	call _ft_strcpy
+
+	mov rdi, rax
+	call _printf
+	xor rax, rax
+	ret
 
 section .data
 
-src: db "this is a test", 0
 dest: db "empty", 0
+src: db "this is a test", 0
