@@ -39,3 +39,22 @@ default rel
 ;
 ;dest: db "empty", 0
 ;src: db "this is a test", 0
+
+;main for strcmp:
+SYM(main):
+    lea     rdi, [s1]
+    lea     rsi, [s2]
+    call    SYM(ft_strcmp)
+
+    lea     rdi, [result]
+    mov		esi, eax
+    xor		eax, eax
+    call    SYM(printf)
+
+    xor eax, eax
+    ret
+
+section .data
+s1:     db  "abcd", 0
+s2:     db  "abcz", 0
+result: db  "Result of ft_strcmp is: %d", 10, 0
