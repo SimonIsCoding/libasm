@@ -1,28 +1,36 @@
 #Variables
 NAME	= libasm.a
-COMP	= gcc
-FLAGS	= 
+OS		= $(shell uname -s)
+AS		= nasm
+AR		= ar
+ARFLAGS	= rcs
+ASFLAGS	= -f $(FORMAT)
 SRCS	= 	ft_strlen.s \
 			ft_strcpy.s \
-			ft_strcmp
+			ft_strcmp.s
 OBJS	= $(SRCS:.s=.o)
 EXEC	= $(SRCS:.s=)
-RM 		= rm -rf 
-ifeq ($(shell uname -m), arm64)
-    COMP += -ld_classic --target=x86_64-apple-darwin
+RM 		= rm -rf
+
+ifeq ($(OS), Darwin)
+	FORMAT = macho64
+	PREFIX = _
+else
+	FORMAT = elf64
+	PREFIX =
 endif
 
-#-f macho64
-
 #Rules
-all:	Makefile $(OBJS)
-		$(COMP) $(FLAGS) -o $(NAME)
+all:	$(NAME)
 
-$(NAME):
-	$(COMP) 
+$(NAME): Makefile $(OBJS)
+	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
+
+%.o: %.s
+	$(AS) $(ASFLAGS) -D PREFIX=$(PREFIX) $< -o $@
 
 clean:
-	$(RM) $(OBJS) $(EXEC)
+	$(RM) $(OBJS) $(EXEC) main.o test_libasm
 
 fclean: clean
 	$(RM) $(NAME)

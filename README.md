@@ -83,10 +83,19 @@ This produces `libasm.a`, the static library archive.
 
 ### Run the tests
 
-on macOS:
-nasm -f macho64 ft_strlen.s -o ft_strlen.o
-gcc -arch x86_64 -o ft_strlen ft_strlen.o
-./ft_strlen
+# 1. Recompile correctly the lib
+nasm -f macho64 -D __APPLE__ ft_strlen.s -o ft_strlen.o
+ar rcs libasm.a ft_strlen.o
+
+# 2. Compile main
+nasm -f macho64 -D __APPLE__ main.s -o main.o
+
+# 3. Link without version's conflicts
+gcc -arch x86_64 main.o libasm.a -o test_libasm
+
+# 4. Test
+./test_libasm
+
 ```bash
 # Compile the test binary against the library
 gcc main.c -L. -lasm -o test_libasm

@@ -1,40 +1,24 @@
-global _main
-global _ft_strcpy
-extern _printf
+%include "asm_header.inc"
+global SYM(ft_strcpy)
 default rel
 
 section .text
 
-_ft_strcpy:
+SYM(ft_strcpy):
 	xor rax, rax
 	xor rdx, rdx
 
-strcpy_loop:
+.loop:
 	cmp byte [rsi + rax], 0
-	je strcpy_end
+	je .done
 
 	mov cl, [rsi + rdx]
 	mov [rdi + rax], cl
 	inc rax
 	inc rdx
-	jmp strcpy_loop
+	jmp .loop
 
-strcpy_end:
+.done:
 	mov byte [rdi + rax], 0
 	mov rax, rdi
 	ret
-
-_main:
-	lea rdi, [dest]
-	lea rsi, [src]
-	call _ft_strcpy
-
-	mov rdi, rax
-	call _printf
-	xor rax, rax
-	ret
-
-section .data
-
-dest: db "empty", 0
-src: db "this is a test", 0
