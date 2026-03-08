@@ -3,7 +3,8 @@ NAME	= libasm.a
 COMP	= gcc
 FLAGS	= 
 SRCS	= 	ft_strlen.s \
-			ft_strcpy.s
+			ft_strcpy.s \
+			ft_strcmp
 OBJS	= $(SRCS:.s=.o)
 EXEC	= $(SRCS:.s=)
 RM 		= rm -rf 
