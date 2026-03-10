@@ -29,10 +29,10 @@ $(NAME): Makefile $(OBJS)
 	$(AS) $(ASFLAGS) -D PREFIX=$(PREFIX) $< -o $@
 
 main.o: main.s
-	$(AS) $(ASFLAGS) -D PREFIX=$(PREFIX) main.s -o main.o
+	$(AS) $(ASFLAGS) main.s -o main.o
 
 test: $(NAME) main.o
-	$(AS) $(ASFLAGS) $(NAME)
+	arch -x86_64 cc main.o $(NAME) -o test_libasm
 	./test_libasm
 
 clean:
