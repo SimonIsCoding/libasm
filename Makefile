@@ -14,10 +14,9 @@ RM 		= rm -rf
 
 ifeq ($(OS), Darwin)
 	FORMAT = macho64
-	PREFIX = _
+	ASFLAGS += -D __APPLE__
 else
 	FORMAT = elf64
-	PREFIX =
 endif
 
 #Rules
@@ -28,6 +27,13 @@ $(NAME): Makefile $(OBJS)
 
 %.o: %.s
 	$(AS) $(ASFLAGS) -D PREFIX=$(PREFIX) $< -o $@
+
+main.o: main.s
+	$(AS) $(ASFLAGS) -D PREFIX=$(PREFIX) main.s -o main.o
+
+test: $(NAME) main.o
+	$(AS) $(ASFLAGS) $(NAME)
+	./test_libasm
 
 clean:
 	$(RM) $(OBJS) $(EXEC) main.o test_libasm
