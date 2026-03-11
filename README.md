@@ -10,6 +10,11 @@ Built and tested on **macOS (Apple Silicon)** and **Linux (Ubuntu)**. Not tested
 > Personal notes that helped build this project (registers, syscalls, stack alignment, instructions reference):
 > [Assembly Notes — Notion](https://www.notion.so/Assembly-3116fbb80b5a809d92e3d991554c5205?source=copy_link)
 
+## Final score
+<div align=center>
+    <img src="https://github.com/SimonIsCoding/utils_and_random/blob/main/100_100.png"/>
+</div>
+
 ---
 
 ## Functions implemented
