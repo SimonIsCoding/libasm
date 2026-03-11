@@ -11,7 +11,7 @@ Built and tested on **macOS (Apple Silicon)** and **Linux (Ubuntu)**. Not tested
 > [Assembly Notes — Notion](https://www.notion.so/Assembly-3116fbb80b5a809d92e3d991554c5205?source=copy_link)
 
 ## Final score
-<div align=center>
+<div align="center" height="50%">
     <img src="https://github.com/SimonIsCoding/utils_and_random/blob/main/100_100.png"/>
 </div>
 
