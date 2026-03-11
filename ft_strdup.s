@@ -22,7 +22,9 @@ SYM(ft_strdup):
 	jz		.error
 	pop		rsi
 	mov		rdi, rax
+	sub     rsp, 8
 	CALL(SYM(ft_strcpy))
+	add     rsp, 8
 	ret
 
 .error:
