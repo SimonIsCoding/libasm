@@ -46,13 +46,12 @@ SYM(main):
 	lea		rsi, [read_buf]
 	mov		edx, 1024
 	CALL(SYM(ft_read))
-	;xor		eax, eax
 
 	mov		edi, 1
 	lea		rsi, [read_buf]
 	mov		rdx, rax
 	CALL(SYM(ft_write))
-	xor 	eax, eax
+	xor 	rax, rax
 
 	pop		rbp
     ret
