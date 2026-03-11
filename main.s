@@ -5,9 +5,11 @@ extern  SYM(ft_strcpy)
 extern  SYM(ft_strcmp)
 extern	SYM(ft_write)
 extern	SYM(ft_read)
+extern	SYM(ft_strdup)
 global  SYM(main)
 default rel
 
+section .text
 SYM(main):
     push	rbp
     mov		rbp, rsp
@@ -38,7 +40,7 @@ SYM(main):
 
 	mov		edi, 1
 	lea		rsi, [input_message]
-	mov		edx, 23
+	mov		edx, 24
 	CALL(SYM(ft_write))
 	xor		eax, eax
 
@@ -52,6 +54,13 @@ SYM(main):
 	mov		rdx, rax
 	CALL(SYM(ft_write))
 	xor 	rax, rax
+
+	lea		rdi, [s3]
+	CALL(SYM(ft_strdup))
+	lea		rdi, [s3_dup]
+	mov		rsi, rax
+	CALL(SYM(printf))
+	xor		rax, rax
 
 	pop		rbp
     ret
@@ -68,8 +77,10 @@ s1:				db "abcd", 0
 s2:				db "abcz", 0
 result_strcmp:	db "Result of ft_strcmp: %d", 10, 0
 
-;buf:			db "I am using read & write function", 10
-input_message:	db "Enter any text input: ", 10
+input_message:	db "Enter any text input: ", 10, 0
+
+s3:				db "is this string duplicated ?", 10, 0
+s3_dup:			db "after calling ft_strdup: %s", 0
 
 section .bss
 read_buf:		resb 1024

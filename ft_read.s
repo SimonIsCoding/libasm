@@ -1,6 +1,6 @@
 %include "asm_header.inc"
 global	SYM(ft_read)
-%ifdef	__APPPLE__
+%ifdef	__APPLE__
 	extern	___error
 %else
 	extern	__errno_location
@@ -10,7 +10,7 @@ section .text
 SYM(ft_read):
 	mov		rax, SYS_READ
 	syscall
-	%ifdef	__APPPLE__
+	%ifdef	__APPLE__
 		jc		.error
 	%else
 		test	rax, rax
@@ -19,7 +19,7 @@ SYM(ft_read):
 	ret
 
 .error:
-	%ifdef	__APPPLE__
+	%ifdef	__APPLE__
 		push	rax
 		call	___error
 	%else
