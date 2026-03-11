@@ -8,14 +8,14 @@ section .text
 SYM(ft_strcmp):
 
 .loop:
-    movzx eax, byte [rdi]
-	movzx ecx, byte [rsi]
-    cmp eax, ecx
+    movzx	eax, byte [rdi]
+	movzx	ecx, byte [rsi]
+    cmp		eax, ecx
     jne     .done
-    test eax, eax
+    test	eax, eax
     je      .done
-	inc rdi
-	inc rsi
+	inc		rdi
+	inc		rsi
     jmp     .loop
 
 .done:

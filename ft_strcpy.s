@@ -5,20 +5,14 @@ default rel
 section .text
 
 SYM(ft_strcpy):
-	xor rax, rax
-	xor rdx, rdx
+	mov		rax, rdi
 
 .loop:
-	cmp byte [rsi + rax], 0
-	je .done
+	mov		cl, [rsi]
+	mov		[rdi], cl
+	inc		rsi
+	inc		rdi
+	test	cl, cl
+	jnz		.loop	;jump if not Zero
 
-	mov cl, [rsi + rdx]
-	mov [rdi + rax], cl
-	inc rax
-	inc rdx
-	jmp .loop
-
-.done:
-	mov byte [rdi + rax], 0
-	mov rax, rdi
 	ret

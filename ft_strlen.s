@@ -5,13 +5,14 @@ default rel
 section .text
 
 SYM(ft_strlen):
-	xor rax, rax
+	xor 	rax, rax
 
 .loop:
-	cmp byte [rdi + rax], 0
-	je .done
+	cmp 	byte [rdi], 0
+	je 		.done
+	inc 	rdi
+	inc		rax
+	jmp 	.loop
 
-	inc rax
-	jmp .loop
 .done:
 	ret
