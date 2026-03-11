@@ -13,6 +13,6 @@ SYM(ft_strcpy):
 	inc		rsi
 	inc		rdi
 	test	cl, cl
-	jnz		.loop	;jump if not Zero
+	jnz		.loop
 
 	ret
