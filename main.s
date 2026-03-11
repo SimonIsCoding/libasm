@@ -13,22 +13,22 @@ SYM(main):
 	lea rdi, [message]
 	call SYM(ft_strlen)
 	mov rsi, rax
-	lea rdi, [format]
-	xor rax, rax
+	lea rdi, [result_strlen]
 	CALL(SYM(printf))
 	xor rax, rax
 
 	lea rdi, [dest]
 	lea rsi, [src]
 	call SYM(ft_strcpy)
-	mov rdi, rax
+	lea		rdi, [result_strcpy]
+	mov		rsi, rax
 	CALL(SYM(printf))
 	xor rax, rax
 
     lea     rdi, [s1]
     lea     rsi, [s2]
     call    SYM(ft_strcmp)
-    lea     rdi, [result]
+    lea     rdi, [result_strcmp]
     mov		esi, eax
     xor		eax, eax
     CALL(SYM(printf))
@@ -38,12 +38,12 @@ SYM(main):
 
 section .data
 message: db "This is an incredible test", 0
-format:	db "Result: %d", 10, 0
+result_strlen: db "Result of ft_strlen: %d", 10, 0
 
-;dest: db "abcdefghijklmno", 10, 0
-dest: times 64 db 0
-src: db "this is a test", 10, 0
+dest: db "abcdef", 0
+src: db "this is a test", 0
+result_strcpy: db "Result of ft_strcpy: %s", 10, 0
 
 s1:     db  "abcd", 0
 s2:     db  "abcz", 0
-result: db  "Result of ft_strcmp is: %d", 10, 0
+result_strcmp: db "Result of ft_strcmp: %d", 10, 0
