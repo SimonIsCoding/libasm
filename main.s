@@ -3,6 +3,7 @@ extern  SYM(printf)
 extern  SYM(ft_strlen)
 extern  SYM(ft_strcpy)
 extern  SYM(ft_strcmp)
+extern	SYM(ft_write)
 global  SYM(main)
 default rel
 
@@ -33,6 +34,12 @@ SYM(main):
     xor		eax, eax
     CALL(SYM(printf))
     xor		eax, eax
+
+	mov		edi, 1
+	lea		rsi, [buf]
+	mov		edx, 40
+	CALL(SYM(ft_write))
+	xor 	eax, eax
 	
 	pop		rbp
     ret
@@ -45,6 +52,8 @@ dest:			db "abcdef", 0
 src:			db "this is a test", 0
 result_strcpy:	db "Result of ft_strcpy: %s", 10, 0
 
-s1:				db  "abcd", 0
-s2:				db  "abcz", 0
+s1:				db "abcd", 0
+s2:				db "abcz", 0
 result_strcmp:	db "Result of ft_strcmp: %d", 10, 0
+
+buf:			db "I am using write function to write this", 10
