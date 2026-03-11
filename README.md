@@ -12,7 +12,7 @@ Built and tested on **macOS (Apple Silicon)** and **Linux (Ubuntu)**. Not tested
 
 ## Final score
 <div align="center">
-	<img src="https://github.com/SimonIsCoding/utils_and_random/blob/main/100_100.png" width="125"/>
+	<img src="https://github.com/SimonIsCoding/utils_and_random/blob/main/100_100.png" width="200"/>
 </div>
 
 ---
