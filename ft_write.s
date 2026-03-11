@@ -5,7 +5,6 @@ global SYM(ft_write)
 %else
 	extern	__errno_location
 %endif
-default rel
 
 section .text
 SYM(ft_write):

@@ -4,6 +4,7 @@ extern  SYM(ft_strlen)
 extern  SYM(ft_strcpy)
 extern  SYM(ft_strcmp)
 extern	SYM(ft_write)
+extern	SYM(ft_read)
 global  SYM(main)
 default rel
 
@@ -36,11 +37,23 @@ SYM(main):
     xor		eax, eax
 
 	mov		edi, 1
-	lea		rsi, [buf]
-	mov		edx, 40
+	lea		rsi, [input_message]
+	mov		edx, 23
+	CALL(SYM(ft_write))
+	xor		eax, eax
+
+	mov		edi, 0
+	lea		rsi, [read_buf]
+	mov		edx, 1024
+	CALL(SYM(ft_read))
+	;xor		eax, eax
+
+	mov		edi, 1
+	lea		rsi, [read_buf]
+	mov		rdx, rax
 	CALL(SYM(ft_write))
 	xor 	eax, eax
-	
+
 	pop		rbp
     ret
 
@@ -56,4 +69,8 @@ s1:				db "abcd", 0
 s2:				db "abcz", 0
 result_strcmp:	db "Result of ft_strcmp: %d", 10, 0
 
-buf:			db "I am using write function to write this", 10
+;buf:			db "I am using read & write function", 10
+input_message:	db "Enter any text input: ", 10
+
+section .bss
+read_buf:		resb 1024
