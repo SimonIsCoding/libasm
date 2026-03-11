@@ -15,8 +15,10 @@ RM 		= rm -rf
 ifeq ($(OS), Darwin)
 	FORMAT = macho64
 	ASFLAGS += -D __APPLE__
+	CC_CMD = arch -x86_64 cc
 else
 	FORMAT = elf64
+	CC_CMD = cc
 endif
 
 #Rules
@@ -32,7 +34,7 @@ main.o: main.s
 	$(AS) $(ASFLAGS) main.s -o main.o
 
 test: $(NAME) main.o
-	arch -x86_64 cc main.o $(NAME) -o test_libasm
+	$(CC_CMD) main.o $(NAME) -o test_libasm
 	./test_libasm
 
 clean:

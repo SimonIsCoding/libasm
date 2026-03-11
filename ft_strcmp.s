@@ -1,5 +1,4 @@
 %include "asm_header.inc"
-global  SYM(main)
 global  SYM(ft_strcmp)
 extern  SYM(printf)
 default rel
